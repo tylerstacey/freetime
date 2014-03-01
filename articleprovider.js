@@ -11,18 +11,12 @@ ArticleProvider = function (host, port) {
   this.db = new Db('freetime', server, {fsync:true});
   this.db.open(function(err, db) {
     if(!err) {
-      console.log("Connected to database");
       db.authenticate('freetime', '7H4v35eXftdb', function(err, res) {
         if(!err) {
-          console.log("Authenticated");
         } else {
-          console.log("Error in authentication.");
-          console.log(err);
         }
       });
     } else {
-      console.log("Error in open().");
-      console.log(err);
     };
   });
 };
@@ -73,7 +67,6 @@ ArticleProvider.prototype.save = function (articles, callback) {
         // sync
         try {
           article.link = crypto.randomBytes(7).toString('hex');
-          console.log('Have %d bytes of random data: %s', buf.length, buf);
         } catch (ex) {
           // handle error
           // most likely, entropy sources are drained

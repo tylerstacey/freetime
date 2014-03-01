@@ -42,7 +42,6 @@ app.post('/new', function(req, res){
 
 app.get('/:id', function(req, res){
   scheduleProvider.findById(req.params.id, function(error, article) {
-    console.log('sched' + article.schedule);
     res.render('schedule', {
       schedule: article.schedule,
       times: ['0800', '0900', '1000', '1100', '1200', '1300', '1400', '1500', '1600', '1700', '1800', '1900'],
@@ -52,5 +51,4 @@ app.get('/:id', function(req, res){
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
 });
